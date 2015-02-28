@@ -4,5 +4,6 @@
 out/*
 lib/*
 bin/*
+C:/*
 *.jar
 *.class

@@ -1,6 +1,7 @@
 package com.lumpofcode.crawler;
 
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.http.Header;
@@ -61,7 +62,7 @@ public final class BabyCrawl extends WebCrawler
 	 * You should implement this function to specify whether the given url should be crawled or not (based on your crawling logic).
 	 */
 	@Override
-	public boolean shouldVisit(WebURL url)
+	public boolean shouldVisit(Page page, WebURL url)
 	{
 		String href = url.getURL().toLowerCase();
 		return !FILTERS.matcher(href).matches() && href.startsWith(thisRoot);
@@ -138,7 +139,7 @@ public final class BabyCrawl extends WebCrawler
 			final String theTitle = theHtmlParseData.getTitle();
 			final String theText = theHtmlParseData.getText();
 			final String theHtml = theHtmlParseData.getHtml();
-			final List<WebURL> theLinks = theHtmlParseData.getOutgoingUrls();
+			final Set<WebURL> theLinks = theHtmlParseData.getOutgoingUrls();
 			
 			System.out.println("HTML Resource");
 			System.out.println("Text length: " + theText.length());
